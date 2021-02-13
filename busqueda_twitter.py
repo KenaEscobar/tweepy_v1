@@ -19,13 +19,20 @@ api = tweepy.API(auth)
 
 #Busqueda usando search
 api = tweepy.API(auth)
-#resultado = api.search(q='Mapuche')[0].text
 
-resultado = api.search(q='mapuche constituyente', tweet_mode='extended', result_type='recent')[0]
+clave_busqueda = "mapuche"
+cantidad = 10
+
+search_twetter = [status for status in tweepy.Cursor(api.search, q = clave_busqueda).items(cantidad)]
+
+print (search_twetter)
+
+"""
+resultado = api.search( q = clave_busqueda, tweet_mode='extended', result_type='recent')[0]
 print(resultado)
 print (type (resultado))
 f = open('twitter.txt', 'a', encoding = 'utf-8')
 f.write(str(resultado))
 f.close()
-
+"""
 
