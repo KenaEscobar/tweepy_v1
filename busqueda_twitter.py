@@ -8,6 +8,7 @@ import json
 import numpy as np 
 import matplotlib.pyplot as plt
 import re
+import time
 #import nlkt
 #nlkt.downloads ('stopwords')
 #from nltk.corpus import stopwords
@@ -30,16 +31,18 @@ auth.set_access_token(access_token, access_token_secret)
 api = tweepy.API(auth)
 
 #Busqueda usando search
-api = tweepy.API(auth)
+#api = tweepy.API(auth)
 
 clave_busqueda = "mapuche constituyente"
-cantidad = 1000
-
+cantidad = 100
+time.sleep(3) #este time sleep debe quedar dentro de un for que además me elimine los rt 
 search_twetter = [status for status in tweepy.Cursor(api.search, q = clave_busqueda).items(cantidad)]
 
-print (search_twetter)
+strlist = str(search_twetter)
+json_list = json.dumps(strlist, indent= 4)
+print(json_list)
 
-
+#print(search_twetter)
 """
 resultado = api.search( q = clave_busqueda, tweet_mode='extended', result_type='recent')[0]
 print(resultado)
