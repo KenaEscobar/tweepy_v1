@@ -22,7 +22,7 @@ auth.set_access_token(access_token, access_token_secret)
 api = tweepy.API(auth, wait_on_rate_limit= True ,wait_on_rate_limit_notify= True)
 
 clave_busqueda = "mapuche constituyente"
-cantidad = 500
+cantidad = 50
 search_twetter = [status for status in tweepy.Cursor(api.search, q = "mapuche", tweet_mode='extended').items(cantidad)]
 
 
@@ -30,6 +30,8 @@ search_twetter = [status for status in tweepy.Cursor(api.search, q = "mapuche", 
 
 my_list_of_dicts = []
 for each_json in search_twetter:
+    if each_json.full_text.startswith('RT'):
+        continue
     my_list_of_dicts.append(each_json._json)
 
 with open('twetter_json_Data.txt', 'w' ) as file :
@@ -39,13 +41,14 @@ my_demo_list = []
 with open('twetter_json_Data.txt', encoding= 'utf-8') as json_file:
     all_data = json.load (json_file)
     for each_diccionary in all_data:
+    
         #print(each_diccionary)
 
         created_at = each_diccionary ['created_at']
         tweet_id = each_diccionary ['id']
         full_text = each_diccionary['full_text']
 
-    
+    #formila trae todo lo que está en user. No filtra el dato especifico que se requiere.
         screen_name = each_diccionary['user'],['screen_name']
         name = each_diccionary ['user'],['name']
         location = each_diccionary ['user'],['location']
