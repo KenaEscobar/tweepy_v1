@@ -21,9 +21,9 @@ auth.set_access_token(access_token, access_token_secret)
 # Guardamos la autorizacion a la API en una variable
 api = tweepy.API(auth, wait_on_rate_limit= True ,wait_on_rate_limit_notify= True)
 
-clave_busqueda = "mapuche constituyente"
-cantidad = 600
-search_twetter = [status for status in tweepy.Cursor(api.search, q = "mapuche", tweet_mode='extended').items(cantidad)]
+clave_busqueda = "mapuche"
+cantidad = 24000
+search_twetter = [status for status in tweepy.Cursor(api.search, q =clave_busqueda, tweet_mode='extended').items(cantidad)]
 
 
 #Creación de DataFrame
