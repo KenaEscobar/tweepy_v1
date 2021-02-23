@@ -22,7 +22,7 @@ auth.set_access_token(access_token, access_token_secret)
 api = tweepy.API(auth, wait_on_rate_limit= True ,wait_on_rate_limit_notify= True)
 
 clave_busqueda = "mapuche"
-cantidad = 24000
+cantidad = 2400
 search_twetter = [status for status in tweepy.Cursor(api.search, q =clave_busqueda, tweet_mode='extended').items(cantidad)]
 
 
